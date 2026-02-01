@@ -1,73 +1,122 @@
-# React + TypeScript + Vite
+# 🏎️ GT7 Car Checklist
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Uma checklist interativa e moderna de **todos os carros do Gran Turismo 7**, com imagens, especificações completas e progresso salvo localmente.
 
-Currently, two official plugins are available:
+👉 Ideal para quem quer acompanhar a coleção no jogo sem depender de planilhas ou sites externos.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## ✨ Funcionalidades
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- ✅ Lista completa com **559 carros** do GT7
+- 🖼️ Imagens locais (thumbs) — funciona offline
+- ☑️ Checklist “Tenho / Não tenho”
+- 💾 Progresso salvo no **localStorage**
+- 🔍 Busca por nome
+- 🎛️ Filtros por:
+  - Fabricante (Maker)
+  - Grupo (Gr.N, Gr.3, Gr.4, etc.)
+  - Tração (FR, FF, MR, RR, 4WD)
+  - Aspiração (NA, TC, SC, EV)
+  - Apenas os que tenho / apenas os que faltam
+- 📊 Barra de progresso (% concluído)
+- 🪟 Modal com:
+  - Imagem grande
+  - PP
+  - Grupo
+  - Especificações técnicas
+  - Descrição / história do carro
+  - Link para o site oficial do Gran Turismo
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🧱 Stack utilizada
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Frontend**
+  - React + TypeScript
+  - Vite
+  - CSS custom (estilo racing / moderno)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **Scraping**
+  - Node.js
+  - Playwright
+  - Scripts próprios para:
+    - Coletar dados
+    - Coletar descrições
+    - Baixar imagens localmente
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- **Deploy**
+  - GitHub Pages
+  - GitHub Actions
+
+---
+
+## 📂 Estrutura do projeto
+
+gt7-car-checklist/
+├── public/
+│ ├── cars.json # Base final de dados
+│ └── thumbs/ # Imagens dos carros
+│
+├── scraper/
+│ ├── scrape-gb.ts # Scraper principal (dados + specs)
+│ └── download-thumbs.ts # Download das imagens
+│
+├── src/
+│ ├── components/
+│ │ ├── CarCard.tsx
+│ │ ├── CarList.tsx
+│ │ ├── Filters.tsx
+│ │ ├── Modal.tsx
+│ │ └── ProgressBar.tsx
+│ ├── styles/
+│ │ └── main.css
+│ ├── App.tsx
+│ ├── main.tsx
+│ ├── storage.tsx
+│ └── types.tsx
+│
+└── README.md
+
+## 🚀 Rodando o projeto localmente
+
+### Pré-requisitos
+- Node.js 18+
+- npm
+
+### Instalação
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Desenvolvimento
+npm run dev
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Acesse
+http://localhost:5173
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 🕷️ Atualizando os dados (scraping)
+### 1️⃣ Scrapar lista + detalhes
+npm run scrape:gb
+
+### Gera
+public/cars.json
+
+### 2️⃣ Baixar imagens localmente
+npm run thumbs
+
+### Gera 
+public/thumbs/*.png
+
+
+### ⚠️ Observações importantes
+Este projeto não é oficial e não possui vínculo com a Polyphony Digital ou Sony.
+Todos os dados e imagens são utilizados apenas para fins educacionais e pessoais.
+O progresso é salvo localmente no navegador (localStorage).
+
+### 👤 Autor
+
+Nathan Quadros da Silva
+Projeto feito por paixão por carros, games e desenvolvimento.
+
+Se curtir o projeto, ⭐ deixa uma estrela no repositório!
