@@ -51,33 +51,6 @@ Uma checklist interativa e moderna de **todos os carros do Gran Turismo 7**, com
 
 ---
 
-## 📂 Estrutura do projeto
-
-gt7-car-checklist/
-├── public/
-│ ├── cars.json # Base final de dados
-│ └── thumbs/ # Imagens dos carros
-│
-├── scraper/
-│ ├── scrape-gb.ts # Scraper principal (dados + specs)
-│ └── download-thumbs.ts # Download das imagens
-│
-├── src/
-│ ├── components/
-│ │ ├── CarCard.tsx
-│ │ ├── CarList.tsx
-│ │ ├── Filters.tsx
-│ │ ├── Modal.tsx
-│ │ └── ProgressBar.tsx
-│ ├── styles/
-│ │ └── main.css
-│ ├── App.tsx
-│ ├── main.tsx
-│ ├── storage.tsx
-│ └── types.tsx
-│
-└── README.md
-
 ## 🚀 Rodando o projeto localmente
 
 ### Pré-requisitos
