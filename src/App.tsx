@@ -72,17 +72,9 @@ export default function App() {
 
   const filtered = useMemo(() => applyFilters(cars, owned, filters), [cars, owned, filters]);
 
-  const onToggleOwned = (carId: string) => {
-    setOwned((prev) => toggleOwned(prev, carId));
-  };
-
-  const onMarkAll = () => {
-    setOwned(setAllOwned(cars.map((c) => c.carId), true));
-  };
-
-  const onUnmarkAll = () => {
-    setOwned(setAllOwned(cars.map((c) => c.carId), false));
-  };
+  const onToggleOwned = (carId: string) => setOwned((prev) => toggleOwned(prev, carId));
+  const onMarkAll   = () => setOwned(setAllOwned(cars.map((c) => c.carId), true));
+  const onUnmarkAll = () => setOwned(setAllOwned(cars.map((c) => c.carId), false));
 
   if (loading) {
     return (
@@ -116,23 +108,24 @@ export default function App() {
           <h1>GT7 Car Checklist</h1>
           <div className="sub">
             <span className="chip">
-              Atualizado: {meta.generated_at ? new Date(meta.generated_at).toLocaleString("pt-BR") : "—"}
+              {meta.generated_at ? new Date(meta.generated_at).toLocaleDateString("pt-BR") : "—"}
             </span>
+            <span>{cars.length} carros</span>
           </div>
         </div>
 
-        {meta.source ? (
+        {meta.source && (
           <a className="linkBtnTop" href={meta.source} target="_blank" rel="noreferrer">
-            Fonte oficial
+            Fonte oficial →
           </a>
-        ) : null}
+        )}
       </div>
 
       <div className="progressWrap">
         <div className="progressLabel">
-          <span>Progresso da coleção</span>
-          <span>
-            {ownedCount} / {cars.length} carros{" "}
+          <span className="progressLabelLeft">Progresso da coleção</span>
+          <span className="progressLabelRight">
+            {ownedCount} / {cars.length}
             <span className="progressPct">{pct}%</span>
           </span>
         </div>
